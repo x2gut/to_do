@@ -1,0 +1,63 @@
+.modal {
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.modal-container {
+  padding: 20px 30px 30px 30px;
+  border-radius: 15px;
+  background: linear-gradient(to right, hsl(210, 30%, 20%), hsl(255, 30%, 25%));
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.close-modal-btn {
+  background-color: transparent;
+  border: 0;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.icon-close {
+  font-size: 30px;
+}
+
+.icon-close:hover {
+  fill: #9e78cf;
+}
+
+.confirm-edit-btn {
+  border: 1px solid #9e78cf !important;
+  width: 130px;
+  height: 50px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: transparent;
+  border-radius: 15px;
+  transition: all 0.35s;
+}
+
+.confirm-edit-btn:hover {
+  border-color: #5cdb95 !important;
+}
+
+form {
+  input {
+    border: 1px solid #fff !important;
+  }
+}

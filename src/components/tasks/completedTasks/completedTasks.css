@@ -1,0 +1,14 @@
+.completed-tasks {
+    display: none;
+
+    li {
+        color: #5cdb95;
+        text-decoration: line-through;
+    }
+}
+
+.completed-tasks.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -1,0 +1,110 @@
+button {
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  color: #9e78cf;
+}
+
+.active-tasks {
+  width: 100%;
+  display: none;
+}
+
+.active-tasks.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.total-tasks {
+  color: #fff;
+  font-size: 18px;
+  text-align: start;
+  padding-bottom: 20px;
+}
+
+.tasks-list {
+  width: 100%;
+  padding: 0;
+  list-style: none;
+  color: #9e78cf;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  word-break: break-all;
+  white-space: normal;
+  margin-bottom: 20px;
+
+  li {
+    background-color: #15101c;
+    padding: 22px 40px 22px 22px;
+    border-radius: 10px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+
+    animation: appear 0.2s linear;
+  }
+}
+
+.manipulate-btn {
+  display: flex;
+  gap: 25px;
+}
+
+.complete-task {
+  svg {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+}
+
+.complete-task:hover {
+  svg {
+    stroke: green;
+    transform: translateY(-2px);
+  }
+}
+
+.edit-task {
+  svg {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+}
+
+.edit-task:hover {
+  svg {
+    transform: translateY(-2px);
+    fill: white;
+  }
+}
+
+.delete-task {
+  svg {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+}
+
+.delete-task:hover {
+  svg {
+    transform: translateY(-2px);
+    fill: red;
+
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

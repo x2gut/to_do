@@ -1,0 +1,50 @@
+.login-container {
+    width: 100%;
+    max-width: 1100px;
+    margin-inline: auto;
+}
+
+.login-back {
+    display: block;
+    margin-top: 50px;
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+    border: 1px solid #3E1671;
+    border-radius: 15px;
+    cursor: pointer;
+    svg {
+        fill: #FFF;
+    }
+}
+
+.login-form {
+    padding-top: 150px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-inline: auto;
+    gap: 30px;
+    max-width: 600px;
+
+    input {
+        color: #777777;
+        font-size: 16px;
+        height: 50px;
+        background-color: transparent;
+        border: 1px solid #3E1671;
+        border-radius: 15px;
+        padding: 0 10px;
+    }
+}
+
+.login-submit {
+    color: #FFF;
+    font-size: 20px;
+    font-weight: 700;
+    height: 50px;
+    border-radius: 15px;
+    border: 0;
+    background-color: #9E78CF;
+    cursor: pointer;
+}

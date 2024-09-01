@@ -1,0 +1,14 @@
+.errors-list {
+    padding: 0;
+    padding: 15px;
+    background-color: transparent;
+    border: 1px solid #E52B50;
+    border-radius: 15px;
+
+    li {
+        list-style: disc;
+        color: #FFF;
+        padding-top: 5px;
+        margin-left: 15px;
+    }
+}

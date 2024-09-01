@@ -1,0 +1,17 @@
+.load-more {
+    border: 1px solid #9e78cf !important;
+    width: 130px;
+    height: 50px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    background-color: transparent;
+    border-radius: 15px;
+    transition: background-color 0.35s;
+    margin-bottom: 20px;
+}
+
+.load-more:hover {
+    background-color: #9e78cf;
+}
