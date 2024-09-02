@@ -27,19 +27,7 @@ export function getTasks() {
   });
 }
 
-export function deleteTask(indexToDelete) {
-  const token = getToken();
-
-  const params = {
-    token: token,
-    task: taskContent,
-  };
-
-  const queryString = new URLSearchParams(params).toString();
-  return fetch(`http://localhost:8000/users/delete/task?${queryString}`);
-}
-
-export function deleteCompletedTaskRequest(task) {
+export function deleteCompletedTaskRequest(taskId) {
   const token = getToken();
 
   return fetch(`http://localhost:8000/users/delete/completed_task`, {
@@ -49,12 +37,12 @@ export function deleteCompletedTaskRequest(task) {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      task: task,
+      id: taskId,
     }),
   });
 }
 
-export function deleteActiveTaskRequest(task) {
+export function deleteActiveTaskRequest(taskId) {
   const token = getToken();
 
   return fetch(`http://localhost:8000/users/delete/active_task`, {
@@ -64,12 +52,12 @@ export function deleteActiveTaskRequest(task) {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      task: task,
+      id: taskId,
     }),
   });
 }
 
-export function completeTaskRequest(task) {
+export function completeTaskRequest(taskId) {
   const token = getToken();
 
   fetch("http://localhost:8000/users/complete_task", {
@@ -79,13 +67,13 @@ export function completeTaskRequest(task) {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      task: task,
+      id: taskId,
     }),
   });
 }
 
 
-export function updateTaskRequest(task, newTask) {
+export function updateTaskRequest(taskId, newTask) {
   const token = getToken();
 
   fetch("http://localhost:8000/users/update_task", {
@@ -95,7 +83,7 @@ export function updateTaskRequest(task, newTask) {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      task: task,
+      id: taskId,
       new_task: newTask
     })
   })
