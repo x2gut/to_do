@@ -1,8 +1,8 @@
 class Validator {
   constructor() {}
 
-  minLength(value) {
-    return value.length >= 4;
+  minLength(valueToValidate, minLength) {
+    return valueToValidate.length >= minLength;
   }
 
   validatePassword(value) {
