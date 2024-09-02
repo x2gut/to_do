@@ -1,6 +1,6 @@
 .completed-tasks {
     display: none;
-
+    width: 100%;
     li {
         color: #5cdb95;
         text-decoration: line-through;
