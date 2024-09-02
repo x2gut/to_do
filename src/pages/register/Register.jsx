@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import Validator from "../../utils/validation/validation";
 import DisplayErrors from "../../components/displayErrors/DisplayErrors.jsx";
 import registerUser from "../../utils/requests/registerUser.js";
@@ -12,6 +12,8 @@ function Register() {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [errors, setErrors] = useState([]);
+
+  const navigate = useNavigate();
 
   const changeUsernameHandler = (event) => {
     setUsername(event.target.value);
@@ -27,13 +29,13 @@ function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const validatorErrors = validator.validatePassword(password);
+    const validatorErrors = validator.validatePassword(password, 8);
 
     if (validator.isRequired(username)) {
       validatorErrors.push("Username can not be empty!");
     }
 
-    if (!validator.minLength(username)) {
+    if (!validator.minLength(username, 4)) {
       validatorErrors.push("Minimum length for username is 4");
     }
 
@@ -47,6 +49,9 @@ function Register() {
       const registerUserData = await registerUser(username, password);
       if (registerUserData !== null) {
         setErrors([registerUserData]);
+      }
+      else {
+        navigate("/login")
       }
     }
   };

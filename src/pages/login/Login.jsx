@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./login.css";
 import loginUser from "../../utils/requests/loginUser";
 import DisplayErrors from "../../components/displayErrors/DisplayErrors";
+import Validator from "../../utils/validation/validation";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -11,6 +12,8 @@ function Login() {
   const [errors, setErrors] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
   const navigate = useNavigate();
+  
+  const validator = new Validator();
 
   const changeUsernameHandler = (event) => {
     setUsername(event.target.value);
@@ -22,13 +25,23 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const loginData = await loginUser(username, password);
-    if (loginData) {
-      setErrors([loginData]);
-      setIsLogged(false);
-    } else {
-      setErrors([]);
-      setIsLogged(true);
+    if (validator.minLength(username, 1)) {
+      if (validator.minLength(password, 8)) {
+        const loginData = await loginUser(username, password);
+      if (loginData) {
+        setErrors([loginData]);
+        setIsLogged(false);
+      } else {
+        setErrors([]);
+        setIsLogged(true);
+      }
+      }
+      else {
+        setErrors(["Minimum password length is 8"])
+      }
+    }
+    else {
+      setErrors(["Username is required"])
     }
   };
 
