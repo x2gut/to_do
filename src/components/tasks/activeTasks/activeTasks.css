@@ -53,6 +53,7 @@ button {
 .manipulate-btn {
   display: flex;
   gap: 25px;
+  min-width: 120px;
 }
 
 .complete-task {
