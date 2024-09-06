@@ -3,7 +3,7 @@ import { getToken } from "../jwt/tokenManipulation";
 export function addTask(taskContent) {
   const token = getToken();
 
-  return fetch(`http://localhost:8000/users/add/task`, {
+  return fetch(`http://localhost:8000/tasks/add`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -18,7 +18,7 @@ export function addTask(taskContent) {
 export function getTasks() {
   const token = getToken();
 
-  return fetch(`http://localhost:8000/users/get/tasks`, {
+  return fetch(`http://localhost:8000/tasks/get`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export function getTasks() {
 export function deleteCompletedTaskRequest(taskId) {
   const token = getToken();
 
-  return fetch(`http://localhost:8000/users/delete/completed_task`, {
+  return fetch(`http://localhost:8000/tasks/delete/completed`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -45,7 +45,7 @@ export function deleteCompletedTaskRequest(taskId) {
 export function deleteActiveTaskRequest(taskId) {
   const token = getToken();
 
-  return fetch(`http://localhost:8000/users/delete/active_task`, {
+  return fetch(`http://localhost:8000/tasks/delete/active`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -60,7 +60,7 @@ export function deleteActiveTaskRequest(taskId) {
 export function completeTaskRequest(taskId) {
   const token = getToken();
 
-  fetch("http://localhost:8000/users/complete_task", {
+  fetch("http://localhost:8000/tasks/complete", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -76,7 +76,7 @@ export function completeTaskRequest(taskId) {
 export function updateTaskRequest(taskId, newTask) {
   const token = getToken();
 
-  fetch("http://localhost:8000/users/update_task", {
+  fetch("http://localhost:8000/tasks/update", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

@@ -4,8 +4,7 @@ import { getNewAccesToken } from "./getNewAccesToken";
 export function validateToken(token) {
   const refreshToken = localStorage.getItem("refresh_token");
 
-
-  return fetch("http://localhost:8000/users/login/token", {
+  return fetch("http://localhost:8000/jwt/login/token", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -27,7 +26,7 @@ export function validateToken(token) {
                 return true;
               });
             }
-          })
+          });
         }
       });
     } else {
