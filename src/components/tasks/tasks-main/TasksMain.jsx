@@ -7,8 +7,8 @@ import Validator from "../../../utils/validation/validation.js";
 import ActiveTasks from "../activeTasks/ActiveTasks.jsx";
 
 import "./tasksMain.css";
-import { addTask, getTasks } from "../../../utils/requests/tasks.js";
-import { validateToken } from "../../../utils/requests/validateToken.js";
+import { addTask, getTasks } from "../../../utils/api/tasks.js";
+import { validateToken } from "../../../utils/api/validateToken.js";
 import {
   filterActiveTasks,
   filterCompletedTasks,
@@ -26,13 +26,14 @@ function TasksMain() {
     active: [],
     completed: [],
   });
-  const [isLoading, setIsLoading] = useState(true); // состояние загрузки
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleChange = (event) => {
     setInputData(event.target.value);
   };
 
-  const handleAddTask = async () => {
+  const handleAddTask = async (event) => {
+    event.preventDefault();
     if (validator.minLength(inputData, 4)) {
       const isTokenValid = await validateToken(token);
       if (isTokenValid) {
@@ -64,7 +65,7 @@ function TasksMain() {
     } catch (error) {
       console.error("Error fetching tasks:", error);
     } finally {
-      setIsLoading(false); // завершение загрузки
+      setIsLoading(false);
     }
   };
 
@@ -72,16 +73,15 @@ function TasksMain() {
     fetchTasks();
   }, []);
 
-  // Если данные еще загружаются, показываем индикатор загрузки или ничего
   if (isLoading) {
-    return <p>Loading tasks...</p>; // Вы можете заменить это на индикатор загрузки
+    return <p>Loading tasks...</p>;
   }
 
   return (
     <div className="container">
       <div className="tasks-add-container">
         <div className="tasks-wrapper">
-          <div className="tasks-form">
+          <form action="#" className="tasks-form" onSubmit={handleAddTask}>
             <input
               value={inputData}
               onChange={(event) => {
@@ -94,10 +94,10 @@ function TasksMain() {
               placeholder="Add a new task"
               style={{ borderColor: borderColor ? "red" : "initial" }}
             />
-            <button onClick={handleAddTask} className="add-btn">
+            <button className="add-btn">
               +
             </button>
-          </div>
+          </form>
           <Tabs activeButton={activeButton} setActiveButton={setActiveButton} />
         </div>
         <ActiveTasks
