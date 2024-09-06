@@ -5,6 +5,14 @@
         color: #5cdb95;
         text-decoration: line-through;
     }
+
+    .tasks-list {
+        li {
+            display: flex;
+            padding-bottom: 22px;
+            justify-content: space-between;
+        }
+    }
 }
 
 .completed-tasks.active {
