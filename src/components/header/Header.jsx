@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./header.css";
-import { validateToken } from "../../utils/requests/validateToken";
+import { validateToken } from "../../utils/api/validateToken";
 import { useLocation } from "react-router-dom";
 
 function Header() {

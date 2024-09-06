@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./login.css";
-import loginUser from "../../utils/requests/loginUser";
+import loginUser from "../../utils/api/loginUser";
 import DisplayErrors from "../../components/displayErrors/DisplayErrors";
 import Validator from "../../utils/validation/validation";
 

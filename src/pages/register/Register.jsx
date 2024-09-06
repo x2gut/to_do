@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Validator from "../../utils/validation/validation";
 import DisplayErrors from "../../components/displayErrors/DisplayErrors.jsx";
-import registerUser from "../../utils/requests/registerUser.js";
+import registerUser from "../../utils/api/registerUser.js";
 import "./register.css";
 
 const validator = new Validator();
