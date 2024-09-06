@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
 import "./completedTasks.css";
-import { validateToken } from "../../../utils/requests/validateToken";
+import { validateToken } from "../../../utils/api/validateToken";
 import { getToken } from "../../../utils/jwt/tokenManipulation";
-import { deleteCompletedTaskRequest } from "../../../utils/requests/tasks";
+import { deleteCompletedTaskRequest } from "../../../utils/api/tasks";
 
 function CompletedTasks({ tasksData, activeButton, setTaskData }) {
 
