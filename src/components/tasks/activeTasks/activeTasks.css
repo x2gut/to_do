@@ -15,6 +15,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .total-tasks {
@@ -26,28 +27,70 @@ button {
 
 .tasks-list {
   width: 100%;
-  padding: 0;
   list-style: none;
   color: #9e78cf;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
   word-break: break-all;
   white-space: normal;
   margin-bottom: 20px;
+  padding-inline: 20px;
 
   li {
     background-color: #15101c;
-    padding: 22px 40px 22px 22px;
+    padding: 22px 40px 0px 22px;
+    margin-bottom: 20px;
     border-radius: 10px;
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    justify-content: space-between;
     transition: all 0.3s ease;
-
     animation: appear 0.2s linear;
   }
+}
+
+.list-upper {
+  width: 100%;
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-footer {
+  color: #474747;
+  font-size: 14px;
+  padding-bottom: 10px;
+
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  justify-content: flex-start
+}
+
+.category-add-form {
+  border: 0;
+}
+
+.category-input {
+  color: #FFF;
+  padding-bottom: 15px;
+  padding-right: 20px;
+  background-color: transparent;
+  border: 0 !important;
+  border-bottom: 1px solid #777 !important;
+  outline: none;
+  transition: transform 0.3s;
+}
+
+.category-add-btn {
+  color: #777;
+  border: 1px solid #777;
+  border-radius: 15px;
+  padding: 10px;
+  font-size: 24px;
+  font-weight: 200;
+  margin-left: -20px;
+  z-index: 1;
+}
+
+.category-input:focus {
+  transform: translateX(10px)
 }
 
 .manipulate-btn {
