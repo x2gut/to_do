@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Outlet, Navigate } from "react-router-dom";
 
-import { validateToken } from "../../requests/validateToken";
+import { validateToken } from "../../api/validateToken";
 import Spin from "../../../components/spin/SpinLoading";
 
 function AuthenticatedRoute() {
