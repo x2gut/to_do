@@ -1,7 +1,10 @@
 import "./modal.css";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import Validator from "../../utils/validation/validation";
 
-function Modal({ showModal, setShowModal, onSubmit, setInputData }) {
+function Modal({ showModal, setShowModal, onSubmit, setInputData, inputData }) {
+  const validator = new Validator();
+
   return (
     <div className="modal">
       <div className="modal-container">
@@ -15,7 +18,15 @@ function Modal({ showModal, setShowModal, onSubmit, setInputData }) {
           </button>
         </div>
         <div className="modal-content">
-          <form action="#" onSubmit={onSubmit}>
+          <form
+            action="#"
+            className="modal-form"
+            onSubmit={() => {
+              if (validator.minLength(inputData, 4)) {
+                onSubmit();
+              }
+            }}
+          >
             <input
               type="text"
               placeholder="Edit"
