@@ -13,7 +13,6 @@ import PublicRoute from "./utils/routes/publicRoute/publicRoute";
 function App() {
   return (
     <div className="page">
-      <Header />
       <Routes>
         <Route element={<AuthenticatedRoute />}>
           <Route path="/tasks" element={<TasksMain />} />
