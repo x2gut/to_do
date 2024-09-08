@@ -12,7 +12,7 @@ function Login() {
   const [errors, setErrors] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
   const navigate = useNavigate();
-  
+
   const validator = new Validator();
 
   const changeUsernameHandler = (event) => {
@@ -28,20 +28,18 @@ function Login() {
     if (validator.minLength(username, 1)) {
       if (validator.minLength(password, 8)) {
         const loginData = await loginUser(username, password);
-      if (loginData) {
-        setErrors([loginData]);
-        setIsLogged(false);
+        if (loginData) {
+          setErrors([loginData]);
+          setIsLogged(false);
+        } else {
+          setErrors([]);
+          setIsLogged(true);
+        }
       } else {
-        setErrors([]);
-        setIsLogged(true);
+        setErrors(["Minimum password length is 8"]);
       }
-      }
-      else {
-        setErrors(["Minimum password length is 8"])
-      }
-    }
-    else {
-      setErrors(["Username is required"])
+    } else {
+      setErrors(["Username is required"]);
     }
   };
 
@@ -104,6 +102,9 @@ function Login() {
             placeholder="Password"
             onChange={changePasswordHandler}
           />
+          <p>
+            Dont have an account? <a href="/register">Register</a>
+          </p>
           <DisplayErrors errors={errors} />
           <button className="login-submit">Log in</button>
         </form>

@@ -112,6 +112,7 @@ function Register() {
             placeholder="Repeat password"
             onChange={changeRepeatPasswordHandler}
           />
+          <p>Already have an account? <a href="/login">Login</a></p>
           <DisplayErrors errors={errors} />
           <button className="register-submit" type="">
             Register

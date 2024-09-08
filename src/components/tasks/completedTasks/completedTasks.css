@@ -15,6 +15,29 @@
     }
 }
 
+.no-completed-tasks-container {
+    display: inline-block;
+    text-align: center;
+
+    color: #FFF;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    h2 {
+        padding-bottom: 20px;
+    }
+
+    span {
+        color: #ed685f;
+    }
+}
+
+.thumb-up {
+    max-width: 128px;
+    max-height: auto;
+    margin-inline: auto;
+}
+
 .completed-tasks.active {
     display: flex;
     flex-direction: column;

@@ -13,7 +13,7 @@ export function validateToken(token) {
   }).then((response) => {
     if (response.ok) {
       return response.json().then((data) => {
-        sessionStorage.setItem("username", data.username);
+        localStorage.setItem("username", data.username);
         return true;
       });
     } else if (response.status === 401) {

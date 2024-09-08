@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 
-import CategorySelect from "../Selectors/CategorySelect";
+import CategorySelect from "../selectors/category/CategorySelect";
 import {
   addCategory,
   deleteCategory,
   getActiveCategory,
-  getCategories,
   setActiveCategory,
 } from "../../utils/api/categories";
 
-export const Categories = ({ task }) => {
+export const Categories = ({
+  task,
+  categories,
+  setCategories,
+  setOriginalTasksData,
+}) => {
   const defaultOption = {
     value: "addNewOption",
     label: "Add a new category...",
@@ -17,13 +21,12 @@ export const Categories = ({ task }) => {
   };
 
   const [isAdding, setIsAdding] = useState(false);
-  const [loadOptions, setLoadOptions] = useState([defaultOption]);
   const [selectedOption, setSelectedOption] = useState(defaultOption);
   const [idToAdd, setIdToAdd] = useState(null);
   const [categoryInputData, setCategoryInputData] = useState("");
 
   const removeOption = (data) => {
-    setLoadOptions((prevOptions) =>
+    setCategories((prevOptions) =>
       prevOptions.filter((option) => option.value !== data.value)
     );
 
@@ -35,46 +38,22 @@ export const Categories = ({ task }) => {
   };
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        //API
-        const categoriesData = await getCategories();
-
-        const newOptions = categoriesData.map((item) => ({
-          value: `${item}Value`,
-          label: item,
-        }));
-
-        if (Array.isArray(categoriesData)) {
-          setLoadOptions((prevData) => [...newOptions, ...prevData]);
-        } else {
-          console.warn("Expected an array but got:", categoriesData);
-        }
-      } catch (error) {
-        console.error("Failed to fetch categories:", error);
-      }
-    };
-
     const fetchActiveCategoroy = async () => {
       //API
       const activeCategory = await getActiveCategory(task.id);
-      console.log(activeCategory);
 
       if (activeCategory !== undefined) {
-
         const newOption = {
           value: `${activeCategory.active_category}Value`,
           label: activeCategory.active_category,
         };
 
         setSelectedOption(newOption);
-
       } else {
         null;
       }
     };
 
-    fetchCategories();
     fetchActiveCategoroy();
   }, []);
 
@@ -87,12 +66,12 @@ export const Categories = ({ task }) => {
             className="category-add-form"
             onSubmit={(event) => {
               event.preventDefault();
-              setLoadOptions([
+              setCategories([
                 {
                   value: `${categoryInputData}`,
                   label: categoryInputData,
                 },
-                ...loadOptions,
+                ...categories,
               ]);
               addCategory(categoryInputData);
               setCategoryInputData("");
@@ -111,7 +90,7 @@ export const Categories = ({ task }) => {
       ) : (
         <CategorySelect
           value={selectedOption}
-          loadOptions={loadOptions}
+          loadOptions={categories}
           removeOption={removeOption}
           onChange={(selectedOption) => {
             if (selectedOption.value === "addNewOption") {
@@ -119,6 +98,16 @@ export const Categories = ({ task }) => {
               setIdToAdd(task.id);
             } else {
               setSelectedOption(selectedOption);
+              setOriginalTasksData((prevData) => {
+                console.log(prevData.active)
+                const updatedActiveTasks = prevData.active.map((t) =>
+                  t.id === task.id
+                    ? { ...t, active_category: selectedOption.label }
+                    : t
+                );
+                console.log(updatedActiveTasks)
+                return { ...prevData, active: updatedActiveTasks };
+              });
               //API
               setActiveCategory(task.id, selectedOption.label);
             }

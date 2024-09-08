@@ -58,7 +58,7 @@ const CategorySelect = ({ onChange, loadOptions, removeOption, value }) => {
     }),
     menu: (provided) => ({
       ...provided,
-      backgroundColor: "rgba(128, 128, 128, 0.2)",
+      backgroundColor: "#1c1526",
       border: "none",
       boxShadow: "none",
     }),
