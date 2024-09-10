@@ -1,7 +1,0 @@
-.rdp-root {
-    background-color: rgba(0, 0, 0, 0.05);
-    padding: 15px;
-    border-radius: 15px;
-    --rdp-accent-color: indigo !important;
-    --rdp-accent-background-color: #f0f0f0 !important;
-}
