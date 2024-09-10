@@ -15,8 +15,10 @@ export const Sidebar = ({ categories, handleFilter }) => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredData = categories.filter((category) =>
-    category.label.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredData = categories.filter(
+    (category) =>
+      category.value !== "addNewOption" &&
+      category.label.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -54,7 +56,11 @@ export const Sidebar = ({ categories, handleFilter }) => {
             />
           </div>
 
-          <nav className="sidebar-nav">
+          <nav
+            className={
+              btnStatus ? "sidebar-nav sidebar-scrollable" : "sidebar-nav"
+            }
+          >
             <ul className="sidebar-list">
               <li className="sidebar-list-item">
                 <button

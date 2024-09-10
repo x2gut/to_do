@@ -33,7 +33,7 @@ function Header() {
         <div className="header-nav">
           {isAuth ? (
             <>
-              <p>Hello, {sessionStorage.getItem("username")}!</p>
+              <p>Hello, {localStorage.getItem("username")}!</p>
               <button
                 className="header-logout"
                 onClick={(e) => {
