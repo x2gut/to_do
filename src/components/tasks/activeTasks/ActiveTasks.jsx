@@ -14,7 +14,6 @@ import Modal from "../../modal/Modal.jsx";
 import divideArrayIntoChunks from "../../../utils/divideArray.js";
 import LoadMoreBtn from "../../loadMoreBtn/LoadMoreBtn.jsx";
 import { Categories } from "../../categories/Categories.jsx";
-import { DatePicker } from "../../selectors/dayPicker/DayPicker.jsx";
 
 function ActiveTasks({
   filteredTasksData,
@@ -22,7 +21,7 @@ function ActiveTasks({
   activeButton,
   categories,
   setCategories,
-  setOriginalTasksData
+  setOriginalTasksData,
 }) {
   const [showModal, setShowModal] = useState(false);
   const [inputData, setInputData] = useState("");
@@ -48,19 +47,21 @@ function ActiveTasks({
     }
   };
 
-  const handleTaskComplete = async (id) => {
+  const handleTaskComplete = async (id, completedTime) => {
     const token = getToken();
     const isTokenValid = await validateToken(token);
     if (isTokenValid) {
-      await completeTaskRequest(id);
-      const completedTask = filteredTasksData.active.find((task) => task.id === id);
+      await completeTaskRequest(id, completedTime);
+      const completedTask = filteredTasksData.active.find(
+        (task) => task.id === id
+      );
 
       setFilteredTasksData((prevData) => ({
         ...prevData,
         active: prevData.active.filter((task) => task.id !== id),
         completed: [
           ...prevData.completed,
-          { ...completedTask, is_completed: true },
+          { ...completedTask, is_completed: true, completed_time: completedTime },
         ],
       }));
       setShowConfetti(true);
@@ -102,7 +103,9 @@ function ActiveTasks({
     >
       {filteredTasksData.active.length > 0 ? (
         <>
-          <p className="total-tasks">Tasks to do: {filteredTasksData.active.length}</p>
+          <p className="total-tasks">
+            Tasks to do: {filteredTasksData.active.length}
+          </p>
           <ul className="tasks-list">
             {dividedArray.slice(0, currentLevel).map((chunk, index) => (
               <React.Fragment key={index}>
@@ -128,7 +131,20 @@ function ActiveTasks({
                         </button>
                         <button
                           className="complete-task"
-                          onClick={() => handleTaskComplete(task.id)}
+                          onClick={() => {
+                            const completedTime = new Date().toLocaleDateString(
+                              "ua-UA",
+                              {
+                                year: "numeric",
+                                month: "2-digit",
+                                day: "2-digit",
+                                hour: "2-digit",
+                                minute: "2-digit",
+                                second: undefined,
+                              }
+                            );
+                            handleTaskComplete(task.id, completedTime);
+                          }}
                         >
                           <svg
                             width="18"
@@ -146,16 +162,6 @@ function ActiveTasks({
                       </div>
                     </div>
                     <div className="list-footer">
-                      <div className="date-picker">
-                        {isDatePicking && (
-                          <DatePicker
-                            dateIdToEdit={dateIdToEdit}
-                            task={task}
-                            setTimeUntill={setTimeUntill}
-                            setIsDatePicking={setIsDatePicking}
-                          />
-                        )}
-                      </div>
                       <Categories
                         task={task}
                         categories={categories}
@@ -190,9 +196,7 @@ function ActiveTasks({
               </span>
               You have nothing to do right now!
             </h2>
-            <p>
-            Use the input field above to add a new task.
-            </p>
+            <p>Use the input field above to add a new task.</p>
             <div className="thumb-up">
               <img className="thumb-up-img" src="/assets/imgs/pro.png" alt="" />
             </div>

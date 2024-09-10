@@ -57,7 +57,7 @@ export function deleteActiveTaskRequest(taskId) {
   });
 }
 
-export function completeTaskRequest(taskId) {
+export function completeTaskRequest(taskId, completedTime) {
   const token = getToken();
 
   fetch("http://localhost:8000/tasks/complete", {
@@ -68,6 +68,7 @@ export function completeTaskRequest(taskId) {
     },
     body: JSON.stringify({
       id: taskId,
+      completed_time: completedTime
     }),
   });
 }

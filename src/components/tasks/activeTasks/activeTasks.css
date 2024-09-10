@@ -41,12 +41,13 @@ button {
     border-radius: 10px;
     transition: all 0.3s ease;
     animation: appear 0.2s linear;
+    flex-direction: column;
   }
 }
 
 .list-upper {
   width: 100%;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
